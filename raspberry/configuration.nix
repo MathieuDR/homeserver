@@ -1,17 +1,8 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }: {
-  #TODO: Copied from hetzner server, I imagine I don't need this.
-  # Maybe the disk config
-  # imports = [
-  #   (modulesPath + "/installer/scan/not-detected.nix")
-  #   (modulesPath + "/profiles/qemu-guest.nix")
-  #   ./disk-config.nix
-  # ];
-
   boot = {
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     loader = {
