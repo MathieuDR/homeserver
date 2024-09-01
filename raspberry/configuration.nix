@@ -60,5 +60,6 @@
   };
 
   # No audio
-  sounds.enable = false;
+  sound.enable = false;
+  hardware.pulseaudio.enable = false;
 }

@@ -1,4 +1,4 @@
-{
+{...}: {
   disko.devices = {
     disk = {
       sdcard = {
@@ -11,8 +11,7 @@
               name = "boot";
               start = "0";
               end = "256M";
-              fs-type = "vfat";
-              bootable = true;
+              type = "0C00"; # FAT32 W95?
               content = {
                 type = "filesystem";
                 format = "vfat";

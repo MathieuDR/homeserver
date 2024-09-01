@@ -1,4 +1,4 @@
-{}: {
+{config, ...}: {
   imports = [
     ./configuration.nix
     ./networking.nix
@@ -6,4 +6,6 @@
     ./GPIO.nix
     ./disk.nix
   ];
+
+  system.stateVersion = "24.05";
 }

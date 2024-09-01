@@ -102,7 +102,7 @@
       {
         formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-        nixosConfigurations.nixos = mkNixosConfiguration {
+        nixosConfigurations.homeserver = mkNixosConfiguration {
           hostname = "homeserver";
           username = "home";
           modules = [
