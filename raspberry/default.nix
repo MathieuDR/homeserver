@@ -4,6 +4,6 @@
     ./networking.nix
     ./variable.nix
     ./GPIO.nix
-    # ./disk.nix
+    ./disk.nix
   ];
 }

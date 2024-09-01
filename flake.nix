@@ -41,7 +41,7 @@
     home-manager,
     nix-index-database,
     nixos-hardware,
-    # disko,
+    disko,
     flake-utils,
     agenix,
     ...
