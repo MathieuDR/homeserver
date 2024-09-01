@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # Straight copy pasto from wiki
   # Create gpio group
   users.groups.gpio = {};
 

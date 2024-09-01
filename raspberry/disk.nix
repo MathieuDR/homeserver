@@ -1,4 +1,5 @@
 {...}: {
+  # TODO: VALIDATE THIS
   disko.devices = {
     disk = {
       sdcard = {
