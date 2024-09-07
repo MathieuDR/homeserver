@@ -6,7 +6,7 @@
   networking = {
     #TODO: Get hostname from config?
     hostName = "homeserver";
-    domain = "home.server";
+    domain = "home. is ou server";
     networkmanager.enable = false;
     interfaces."wlan0".useDHCP = true;
     wireless = {

@@ -32,6 +32,4 @@
       size = 1024;
     }
   ];
-
-  sdImage.compressImage = false;
 }

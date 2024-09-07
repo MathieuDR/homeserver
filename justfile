@@ -1,5 +1,5 @@
 # Define constants
-IP := "tbd"
+IP := "192.168.2.69"
 USER := "root"
 SSH_USER := "home"
 FLAKE := ".#homeserver"

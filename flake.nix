@@ -21,11 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # disko = {
-    #   url = "github:nix-community/disko";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     yvim = {
       url = "github:mathieudr/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,7 +36,6 @@
     home-manager,
     nix-index-database,
     nixos-hardware,
-    # disko,
     flake-utils,
     agenix,
     ...
@@ -85,6 +79,7 @@
         username,
         args ? {},
         modules,
+        useImageOverlay ? false,
       }: let
         specialArgs = argDefaults // {inherit hostname username;} // args;
       in
@@ -95,17 +90,27 @@
               (configurationDefaults specialArgs)
               home-manager.nixosModules.home-manager
               agenix.nixosModules.default
-              ({
-                ...
-              }: {
-                nixpkgs.overlays = [
-                  (final: super: {
-                    makeModulesClosure = x:
-                      super.makeModulesClosure (x // {allowMissing = true;});
-                  })
-                ];
-              })
             ]
+            ++ (
+              if useImageOverlay
+              then [
+                # extra config for sdImage generator
+                {
+                  sdImage.compressImage = false;
+                }
+
+                # Overlay
+                ({...}: {
+                  nixpkgs.overlays = [
+                    (final: super: {
+                      makeModulesClosure = x:
+                        super.makeModulesClosure (x // {allowMissing = true;});
+                    })
+                  ];
+                })
+              ]
+              else []
+            )
             ++ modules;
         };
     in
@@ -116,10 +121,22 @@
         nixosConfigurations.homeserver-image = mkNixosConfiguration {
           hostname = "homeserver";
           username = "home";
+          useImageOverlay = true;
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
             ./raspberry
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ];
+        };
+
+        # BUILD CONFIG
+        nixosConfigurations.homeserver = mkNixosConfiguration {
+          hostname = "homeserver";
+          username = "home";
+          useImageOverlay = false;
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./raspberry
           ];
         };
       }
