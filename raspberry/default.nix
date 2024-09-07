@@ -4,7 +4,8 @@
     ./networking.nix
     ./variable.nix
     ./GPIO.nix
-    ./disk.nix
+    ./sd.nix
+    # ./disk.nix
   ];
 
   system.stateVersion = "24.05";

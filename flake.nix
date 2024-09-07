@@ -21,10 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # disko = {
+    #   url = "github:nix-community/disko";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     yvim = {
       url = "github:mathieudr/nixvim";
@@ -41,7 +41,7 @@
     home-manager,
     nix-index-database,
     nixos-hardware,
-    disko,
+    # disko,
     flake-utils,
     agenix,
     ...
@@ -80,7 +80,7 @@
       };
 
       mkNixosConfiguration = {
-        system ? "x86_64-linux",
+        system ? "aarch64-linux",
         hostname,
         username,
         args ? {},
@@ -95,20 +95,31 @@
               (configurationDefaults specialArgs)
               home-manager.nixosModules.home-manager
               agenix.nixosModules.default
+              ({
+                ...
+              }: {
+                nixpkgs.overlays = [
+                  (final: super: {
+                    makeModulesClosure = x:
+                      super.makeModulesClosure (x // {allowMissing = true;});
+                  })
+                ];
+              })
             ]
             ++ modules;
         };
     in
       {
-        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+        formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
 
-        nixosConfigurations.homeserver = mkNixosConfiguration {
+        # REMOTE IMAGE.
+        nixosConfigurations.homeserver-image = mkNixosConfiguration {
           hostname = "homeserver";
           username = "home";
           modules = [
             nixos-hardware.nixosModules.raspberry-pi-4
-            disko.nixosModules.disko
             ./raspberry
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           ];
         };
       }
@@ -128,5 +139,6 @@
             agenix.packages.${system}.default
           ];
         };
+        # packages.default = self.nixosConfigurations.homeserver.config.system.build.sdImage;
       });
 }
