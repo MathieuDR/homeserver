@@ -1,5 +1,5 @@
 # Define constants
-IP := "192.168.2.69"
+IP := "192.168.2.12"
 USER := "root"
 SSH_USER := "home"
 FLAKE := ".#homeserver"
@@ -23,7 +23,14 @@ rebuild *args:
     @echo "use --option eval-cache false for no cache"
     nixos-rebuild switch --flake {{FLAKE}} --target-host {{USER}}@{{IP}} {{args}}
 
+# Builds an SD image so you can flash this using dd!
+image:
+  nix build .#nixosConfigurations.homeserver-image.config.system.build.sdImage
+
 # Connects to the remote machine
+connect-root:
+    ssh {{USER}}@{{IP}}
+
 connect:
     ssh {{SSH_USER}}@{{IP}}
 

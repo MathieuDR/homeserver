@@ -1,21 +1,24 @@
-{config, ...}: {
-  age.secrets = {
-    "network/env".file = ../secrets/network/env.age;
+{
+  hostname,
+  domain,
+  ...
+}: {
+  networking = {
+    hostName = hostname;
+    domain = domain;
+
+    defaultGateway = "192.168.2.1";
+
+    interfaces.end0.ipv4.addresses = [
+      {
+        address = "192.168.2.12";
+        prefixLength = 24;
+      }
+    ];
   };
 
-  networking = {
-    #TODO: Get hostname from config?
-    hostName = "homeserver";
-    domain = "home. is ou server";
-    networkmanager.enable = false;
-    interfaces."wlan0".useDHCP = true;
-    wireless = {
-      interfaces = ["wlan0"];
-      enable = true;
-      environmentFile = config.age.secrets."network/env".path;
-      networks = {
-        BeeConnected.psk = "@BEE_PSK@";
-      };
-    };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
   };
 }

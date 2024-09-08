@@ -1,11 +1,27 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
 }: {
-  nix.settings = {
-    experimental-features = lib.mkDefault "nix-command flakes";
-    trusted-users = ["root" "@wheel"];
+  nix = {
+    settings = {
+      experimental-features = lib.mkDefault "nix-command flakes";
+      trusted-users = ["root" "@wheel"];
+      accept-flake-config = true;
+      auto-optimise-store = true;
+    };
+
+    registry = {
+      nixpkgs = {
+        flake = inputs.nixpkgs;
+      };
+    };
+
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 14d";
+    };
   };
 
   services.openssh = {

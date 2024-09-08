@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "yellow": "#f9e2af",
+    "teal": "#94e2d5",
+    "mauve": "#cba6f7",
+    "error": "#f38ba8",
+    "success": "#a6e3a1",
+    "subtle": "#7f849c"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "p:yellow",
+          "style": "plain",
+          "template": "nixserver@{{ .UserName }} \u279c",
+          "type": "session"
+        },
+        {
+          "foreground": "p:teal",
+          "properties": {
+            "style": "agnoster_short",
+            "max_depth": 2
+          },
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "p:mauve",
+          "style": "powerline",
+          "template": "<p:yellow>(</>\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}<p:yellow>)</> ",
+          "type": "python"
+        },
+        {
+          "type": "dotnet",
+          "style": "powerline",
+          "foreground": "p:mauve",
+          "template": "<p:yellow>(</>\uE77F {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:yellow>)</> "
+        },
+        {
+          "type": "elixir",
+          "style": "powerline",
+          "foreground": "p:mauve",
+          "template": "<p:yellow>(</>\uE62D {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}<p:yellow>)</> "
+        },
+        {
+          "foreground": "p:mauve",
+          "properties": {
+            "fetch_status": true,
+            "branch_icon": ""
+          },
+          "style": "plain",
+          "template": "<p:yellow>git(</>{{ .HEAD }}{{ .BranchStatus }}<p:yellow>) </>",
+          "type": "git"
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:success",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:error{{ end }}"
+          ],
+          "template": "{{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf00c{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "foreground": "p:subtle",
+          "properties": {
+            "always_enabled": false,
+            "style": "austin",
+            "threshold": 500
+          },
+          "style": "powerline",
+          "template": "{{ .FormattedMs }}",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 3
+}

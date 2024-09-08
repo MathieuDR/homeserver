@@ -73,6 +73,13 @@
         };
       };
 
+      homeserverBaseModules = [
+        nixos-hardware.nixosModules.raspberry-pi-4
+        ./raspberry
+        ./home
+        ./services
+      ];
+
       mkNixosConfiguration = {
         system ? "aarch64-linux",
         hostname,
@@ -119,25 +126,22 @@
 
         # REMOTE IMAGE.
         nixosConfigurations.homeserver-image = mkNixosConfiguration {
-          hostname = "homeserver";
+          hostname = "hpi";
           username = "home";
           useImageOverlay = true;
-          modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./raspberry
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ];
+          modules =
+            [
+              "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+            ]
+            ++ homeserverBaseModules;
         };
 
         # BUILD CONFIG
         nixosConfigurations.homeserver = mkNixosConfiguration {
-          hostname = "homeserver";
+          hostname = "hpi";
           username = "home";
           useImageOverlay = false;
-          modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
-            ./raspberry
-          ];
+          modules = homeserverBaseModules;
         };
       }
       // flake-utils.lib.eachDefaultSystem (system: let
@@ -156,6 +160,5 @@
             agenix.packages.${system}.default
           ];
         };
-        # packages.default = self.nixosConfigurations.homeserver.config.system.build.sdImage;
       });
 }
