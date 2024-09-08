@@ -1,11 +1,7 @@
-{
-  hostname,
-  domain,
-  ...
-}: {
+{hostname, ...}: {
   networking = {
     hostName = hostname;
-    domain = domain;
+    domain = "local";
 
     defaultGateway = "192.168.2.1";
 

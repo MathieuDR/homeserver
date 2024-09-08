@@ -15,7 +15,7 @@
         {
           "foreground": "p:yellow",
           "style": "plain",
-          "template": "nixserver@{{ .UserName }} \u279c",
+          "template": "hpi@{{ .UserName }} \u279c",
           "type": "session"
         },
         {

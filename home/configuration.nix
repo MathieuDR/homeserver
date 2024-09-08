@@ -46,10 +46,13 @@ in {
 
   home.packages =
     stable-packages
-    ++ unstable-packages
-    ++ [
-      (inputs.yvim.packages.aarch64-linux.default)
-    ];
+    ++ unstable-packages;
+
+  #TODO:
+  # cmp-ai missing: https://github.com/nix-community/nixvim/issues/1859
+  # ++ [
+  #   (inputs.yvim.packages.aarch64-linux.default)
+  # ];
 
   programs = {
     home-manager.enable = true;
@@ -83,7 +86,7 @@ in {
     oh-my-posh = {
       enable = true;
       enableBashIntegration = true;
-      settings = builtins.fromJSON (builtins.readFile ./dotfiles/omp.json);
+      settings = builtins.fromJSON (builtins.readFile ../dotfiles/omp.json);
     };
 
     git = {
