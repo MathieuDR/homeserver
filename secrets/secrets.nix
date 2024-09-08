@@ -11,9 +11,6 @@ in {
   # Common
   "common/ghp.age".publicKeys = all_recipients;
 
-  # recipes
-  "recipes/env.age".publicKeys = all_recipients;
-
-  # Networking
-  "network/env.age".publicKeys = all_recipients;
+  # Paperless
+  "paperless/env.age".publicKeys = all_recipients;
 }
