@@ -28,6 +28,7 @@
   };
 in {
   imports = [
+    ./paperless-ngx.nix
   ];
 
   environment.systemPackages = [cd_script];

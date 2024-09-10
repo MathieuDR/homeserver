@@ -50,13 +50,14 @@
     raspberrypi-eeprom
   ];
 
+  services.xserver.enable = false;
   # No GPU, from wiki
-  services.xserver = {
-    enable = true;
-    displayManager.lightdm.enable = true;
-    desktopManager.gnome.enable = true;
-    videoDrivers = ["fbdev"];
-  };
+  # services.xserver = {
+  #   enable = false;
+  #   displayManager.lightdm.enable = false;
+  #   desktopManager.gnome.enable = false;
+  #   # videoDrivers = ["fbdev"];
+  # };
 
   # No audio
   sound.enable = false;

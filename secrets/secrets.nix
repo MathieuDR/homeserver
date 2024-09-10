@@ -1,5 +1,5 @@
 let
-  homeserver = "";
+  homeserver = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIITD0k3BClhwzXkgGhzJuODkzfQEnDioNWMsCAkUW9sC";
   local_pc = builtins.readFile ./id_rsa.pub;
   all_recipients = [homeserver local_pc];
 in {
