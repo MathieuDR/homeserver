@@ -1,8 +1,10 @@
 {config, ...}: {
+  _file = ./restic.nix;
+
   age.secrets = {
-    "restic/env".file = ../../secrets/restic/env.age;
-    "restic/repo".file = ../../secrets/restic/repo.age;
-    "restic/password".file = ../../secrets/restic/password.age;
+    "restic/env".file = ../secrets/restic/env.age;
+    "restic/repo".file = ../secrets/restic/repo.age;
+    "restic/password".file = ../secrets/restic/password.age;
   };
 
   services.restic.backups.b2 = {
