@@ -16,7 +16,7 @@ wipe:
 
 # Local Rebuild nixos, no wipe
 rebuild-local:
-    nixos-rebuild switch --flake {{FLAKE}}
+    sudo nixos-rebuild switch --flake {{FLAKE}}
 
 # Rebuilds nixos, doesn't wipe
 rebuild *args:
