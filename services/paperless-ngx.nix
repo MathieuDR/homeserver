@@ -1,5 +1,9 @@
 {config, ...}: let
   port = 29818;
+
+  #NOTE: This is the default
+  dataDir = "/var/lib/paperless";
+  mediaDir = "${dataDir}/media";
 in {
   _file = ./paperless-ngx.nix;
 
@@ -8,6 +12,7 @@ in {
   };
 
   networking.firewall.allowedTCPPorts = [port];
+  services.restic.backups.b2.paths = [mediaDir];
 
   services.paperless = {
     enable = true;
@@ -15,6 +20,8 @@ in {
     consumptionDirIsPublic = true;
     port = port;
     address = "0.0.0.0";
+    dataDir = dataDir;
+    mediaDir = mediaDir;
 
     settings = {
       PAPERLESS_OCR_PAGES = 1;
