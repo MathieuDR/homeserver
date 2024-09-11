@@ -1,7 +1,7 @@
 # Define constants
 IP := "192.168.2.12"
 USER := "root"
-SSH_USER := "home"
+SSH_USER := "raspy"
 FLAKE := ".#homeserver"
 
 # Define the default recipe to list available commands

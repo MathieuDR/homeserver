@@ -127,7 +127,7 @@
         # REMOTE IMAGE.
         nixosConfigurations.homeserver-image = mkNixosConfiguration {
           hostname = "hpi";
-          username = "home";
+          username = "raspy";
           useImageOverlay = true;
           modules =
             [
@@ -139,7 +139,7 @@
         # BUILD CONFIG
         nixosConfigurations.homeserver = mkNixosConfiguration {
           hostname = "hpi";
-          username = "home";
+          username = "raspy";
           useImageOverlay = false;
           modules = homeserverBaseModules;
         };

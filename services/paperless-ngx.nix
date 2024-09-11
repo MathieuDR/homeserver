@@ -12,7 +12,14 @@ in {
   };
 
   networking.firewall.allowedTCPPorts = [port];
-  services.restic.backups.b2.paths = [mediaDir];
+  services.restic.backups.b2.paths = [
+    mediaDir
+    "${dataDir}/db.sqlite3"
+    "${dataDir}/celerybeat-schedule.db"
+    "${dataDir}/index"
+    "${dataDir}/nixos-paperless-secret-key"
+    "${dataDir}/superuser-state"
+  ];
 
   services.paperless = {
     enable = true;
@@ -25,7 +32,8 @@ in {
 
     settings = {
       PAPERLESS_OCR_PAGES = 1;
-      PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
+      # PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
+      PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
         pdfa_image_compression = "lossless";
