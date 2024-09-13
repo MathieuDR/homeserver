@@ -30,6 +30,7 @@ in {
   imports = [
     ./restic.nix
     ./paperless-ngx.nix
+    ./adguard.nix
   ];
 
   environment.systemPackages = [cd_script];
