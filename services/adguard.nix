@@ -1,4 +1,5 @@
 {...}: {
+  _file = ./adguard.nix;
   networking.firewall = {
     allowedTCPPorts = [3000 53];
     allowedUDPPorts = [67 53];
@@ -57,6 +58,7 @@
   services.caddy.virtualHosts."adguardhome.home" = {
     serverAliases = ["adguardhome.home" "adguard.home" "addblock.home"];
     extraConfig = ''
+      tls internal
       reverse_proxy http://localhost:3000
     '';
   };

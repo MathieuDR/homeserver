@@ -32,8 +32,8 @@ in {
 
     settings = {
       PAPERLESS_OCR_PAGES = 1;
-      # PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
-      PAPERLESS_OCR_LANGUAGE = "deu+eng";
+      PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
+      # PAPERLESS_OCR_LANGUAGE = "deu+eng";
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
         pdfa_image_compression = "lossless";
@@ -44,7 +44,8 @@ in {
   services.caddy.virtualHosts."paperless.home" = {
     serverAliases = ["archive.home" "documents.home"];
     extraConfig = ''
-      reverse_proxy http://localhost:${port}
+      tls internal
+      reverse_proxy http://localhost:${builtins.toString port}
     '';
   };
 }
