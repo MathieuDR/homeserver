@@ -16,6 +16,8 @@ wipe:
 
 # Local Rebuild nixos, no wipe
 rebuild-local:
+    git fetch
+    git pull
     sudo nixos-rebuild switch --flake {{FLAKE}}
 
 # Rebuilds nixos, doesn't wipe
