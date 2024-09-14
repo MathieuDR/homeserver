@@ -26,7 +26,7 @@ in {
     passwordFile = config.age.secrets."paperless/env".path;
     consumptionDirIsPublic = true;
     port = port;
-    address = "0.0.0.0";
+    address = "127.0.0.1";
     dataDir = dataDir;
     mediaDir = mediaDir;
 
@@ -39,5 +39,12 @@ in {
         pdfa_image_compression = "lossless";
       };
     };
+  };
+
+  services.caddy.virtualHosts."paperless.home" = {
+    serverAliases = ["archive.home" "documents.home"];
+    extraConfig = ''
+      reverse_proxy http://localhost:${port}
+    '';
   };
 }

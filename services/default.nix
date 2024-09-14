@@ -31,6 +31,7 @@ in {
     ./restic.nix
     ./paperless-ngx.nix
     ./adguard.nix
+    ./caddy.nix
   ];
 
   environment.systemPackages = [cd_script];
