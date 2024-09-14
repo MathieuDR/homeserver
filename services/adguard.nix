@@ -1,12 +1,19 @@
 {...}: {
+  networking.firewall = {
+    allowedTCPPorts = [3000 53];
+    allowedUDPPorts = [67 53];
+  };
+
   services.adguardhome = {
     enable = true;
     allowDHCP = true;
+    host = "0.0.0.0";
+    port = 3000;
     settings = {
-      http = {
-        address = "127.0.0.1:8053";
-        session_ttl = "86400";
-      };
+      # http = {
+      #   address = "0.0.0.0:8053";
+      #   session_ttl = "86400";
+      # };
       dns = {
         bind_hosts = ["0.0.0.0"];
         port = 53;
