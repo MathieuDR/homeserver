@@ -41,8 +41,8 @@ in {
     };
   };
 
-  services.caddy.virtualHosts."paperless.home" = {
-    serverAliases = ["archive.home" "documents.home"];
+  services.caddy.virtualHosts."paperless.home.arpa" = {
+    serverAliases = ["archive.home.arpa" "documents.home.arpa"];
     extraConfig = ''
       tls internal
       reverse_proxy http://localhost:${builtins.toString port}

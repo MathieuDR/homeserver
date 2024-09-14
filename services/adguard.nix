@@ -24,7 +24,7 @@
         filtering_enabled = true;
         rewrites = [
           {
-            domain = "*.home";
+            domain = "*.home.arpa";
             answer = "192.168.2.12";
           }
         ];
@@ -55,8 +55,8 @@
     };
   };
 
-  services.caddy.virtualHosts."adguardhome.home" = {
-    serverAliases = ["adguardhome.home" "adguard.home" "addblock.home"];
+  services.caddy.virtualHosts."adguardhome.home.arpa" = {
+    serverAliases = ["adguardhome.home.arpa" "adguard.home.arpa" "addblock.home.arpa"];
     extraConfig = ''
       tls internal
       reverse_proxy http://localhost:3000
