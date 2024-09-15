@@ -37,6 +37,7 @@ in {
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
         pdfa_image_compression = "lossless";
+        invalidate_digital_signatures = true;
       };
     };
   };
