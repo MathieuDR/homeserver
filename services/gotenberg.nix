@@ -7,7 +7,7 @@
 in {
   virtualisation.oci-containers.containers.gotenberg = {
     image = "gotenberg/gotenberg:8";
-    ports = ["${port}:3000"];
+    ports = ["${builtins.toString port}:3000"];
   };
 
   # CORE DUMPS :(
