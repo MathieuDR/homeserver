@@ -30,6 +30,7 @@ in {
   imports = [
     ./restic.nix
     ./paperless-ngx.nix
+    ./gotenberg.nix
     ./adguard.nix
     ./caddy.nix
   ];
