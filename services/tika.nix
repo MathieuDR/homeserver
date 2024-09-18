@@ -21,7 +21,7 @@ in {
   services.tika = {
     enable = true;
     port = port;
-    enableOCR = true;
+    enableOcr = true;
     package = pkgs.tika;
   };
 }
