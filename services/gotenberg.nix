@@ -1,16 +1,22 @@
-{pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   port = 29819;
 in {
   # Ensure the package is from unstable
   nixpkgs.overlays = [
     (final: prev: {
-      gotenberg = pkgs.unstable.gotenberg;
+      gotenberg = pkgs.unstable.gotenberg.overrideAttrs {
+        meta.mainProgram = "gotenberg";
+      };
     })
   ];
 
   # Import the module definition from unstable
   imports = [
-    (pkgs.unstable.path + "/nixos/modules/services/misc/gotenberg.nix")
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/gotenberg.nix"
   ];
 
   # Configure the gotenberg service
