@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   port = 29818;
 
   #NOTE: This is the default
@@ -10,6 +14,10 @@ in {
   age.secrets = {
     "paperless/env".file = ../secrets/paperless/env.age;
   };
+
+  environment.systemPackages = with pkgs; [
+    kdePackages.zxing-cpp
+  ];
 
   networking.firewall.allowedTCPPorts = [port];
   services.restic.backups.b2.paths = [
