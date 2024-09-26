@@ -15,9 +15,9 @@ in {
     "paperless/env".file = ../secrets/paperless/env.age;
   };
 
-  environment.systemPackages = with pkgs; [
-    kdePackages.zxing-cpp
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   kdePackages.zxing-cpp
+  # ];
 
   networking.firewall.allowedTCPPorts = [port];
   services.restic.backups.b2.paths = [
@@ -55,9 +55,9 @@ in {
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://127.0.0.1:29819";
 
       #BARCODES
-      PAPERLESS_CONSUMER_ENABLE_BARCODES = true;
-      PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE = true;
-      PAPERLESS_CONSUMER_BARCODE_MAX_PAGES = 1;
+      # PAPERLESS_CONSUMER_ENABLE_BARCODES = true;
+      # PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE = true;
+      # PAPERLESS_CONSUMER_BARCODE_MAX_PAGES = 1;
     };
   };
 
