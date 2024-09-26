@@ -31,17 +31,25 @@ in {
     mediaDir = mediaDir;
 
     settings = {
+      #OCR
       PAPERLESS_OCR_PAGES = 1;
-      PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
-      PAPERLESS_TIKA_ENABLED = true;
-      PAPERLESS_TIKA_ENDPOINT = "http://127.0.0.1:29820";
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://127.0.0.1:29819";
       # PAPERLESS_OCR_LANGUAGE = "deu+eng";
+      PAPERLESS_OCR_LANGUAGE = "nld+deu+eng";
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
         pdfa_image_compression = "lossless";
         invalidate_digital_signatures = true;
       };
+
+      #OFFICE
+      PAPERLESS_TIKA_ENABLED = true;
+      PAPERLESS_TIKA_ENDPOINT = "http://127.0.0.1:29820";
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://127.0.0.1:29819";
+
+      #BARCODES
+      PAPERLESS_CONSUMER_ENABLE_BARCODES = true;
+      PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE = true;
+      PAPERLESS_CONSUMER_BARCODE_MAX_PAGES = 1;
     };
   };
 
