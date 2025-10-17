@@ -28,13 +28,17 @@
   };
 in {
   imports = [
-    ./restic.nix
-    ./paperless-ngx.nix
-    ./tika.nix
-    ./gotenberg.nix
+    # ./restic.nix
+    # ./paperless-ngx.nix
+    # ./tika.nix
+    # ./gotenberg.nix
     ./adguard.nix
     ./caddy.nix
   ];
 
-  environment.systemPackages = [cd_script];
+  environment.systemPackages = [
+    cd_script
+    pkgs.htop
+    pkgs.lm_sensors
+  ];
 }

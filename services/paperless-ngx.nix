@@ -30,7 +30,7 @@ in {
   ];
 
   services.paperless = {
-    enable = true;
+    enable = false;
     passwordFile = config.age.secrets."paperless/env".path;
     consumptionDirIsPublic = true;
     port = port;

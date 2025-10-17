@@ -19,7 +19,7 @@ in {
 
   # Configure the tika service
   services.tika = {
-    enable = true;
+    enable = false;
     port = port;
     enableOcr = true;
     package = pkgs.tika;
