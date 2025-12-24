@@ -2,7 +2,7 @@
   _file = ./adguard.nix;
   networking.firewall = {
     allowedTCPPorts = [3000 53];
-    allowedUDPPorts = [67 53];
+    allowedUDPPorts = [53];
   };
 
   services.adguardhome = {
@@ -24,8 +24,12 @@
         filtering_enabled = true;
         rewrites = [
           {
-            domain = "*.local";
-            answer = "192.168.2.12";
+            domain = "adguard.i.deraedt.dev";
+            answer = "192.168.178.201";
+          }
+          {
+            domain = "*.i.deraedt.dev";
+            answer = "192.168.178.210";
           }
         ];
       };
@@ -41,22 +45,10 @@
           url = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt";
         }
       ];
-      dhcp = {
-        enabled = true;
-        interface_name = "end0";
-        dhcpv4 = {
-          gateway_ip = "192.168.2.1"; # router
-          range_start = "192.168.2.30";
-          range_end = "192.168.2.230";
-          subnet_mask = "255.255.255.0";
-          lease_duration = 181440; # 3 weeks
-        };
-      };
     };
   };
 
-  services.caddy.virtualHosts."adguardhome.local" = {
-    serverAliases = ["adguardhome.local" "adguard.local" "addblock.local"];
+  services.caddy.virtualHosts."adguard.i.deraedt.dev" = {
     extraConfig = ''
       tls internal
       reverse_proxy http://localhost:3000

@@ -28,10 +28,6 @@
   };
 in {
   imports = [
-    # ./restic.nix
-    # ./paperless-ngx.nix
-    # ./tika.nix
-    # ./gotenberg.nix
     ./adguard.nix
     ./caddy.nix
   ];

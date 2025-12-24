@@ -4,10 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
@@ -37,7 +33,6 @@
     nix-index-database,
     nixos-hardware,
     flake-utils,
-    agenix,
     ...
   }:
     with inputs; let
@@ -96,7 +91,6 @@
             [
               (configurationDefaults specialArgs)
               home-manager.nixosModules.home-manager
-              agenix.nixosModules.default
             ]
             ++ (
               if useImageOverlay
@@ -157,7 +151,6 @@
           packages = with pkgs; [
             backblaze-b2
             just
-            agenix.packages.${system}.default
           ];
         };
       });

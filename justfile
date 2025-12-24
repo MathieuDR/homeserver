@@ -1,5 +1,5 @@
 # Define constants
-IP := "192.168.2.12"
+IP := "192.168.178.201"
 USER := "root"
 SSH_USER := "raspy"
 FLAKE := ".#homeserver"
