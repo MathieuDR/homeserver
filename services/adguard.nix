@@ -24,11 +24,15 @@
         filtering_enabled = true;
         rewrites = [
           {
-            domain = "adguard.i.deraedt.dev";
+            domain = "hpi.home.deraedt.dev";
             answer = "192.168.178.201";
           }
           {
-            domain = "*.i.deraedt.dev";
+            domain = "adguard.home.deraedt.dev";
+            answer = "192.168.178.201";
+          }
+          {
+            domain = "*.home.deraedt.dev";
             answer = "192.168.178.210";
           }
         ];
@@ -48,7 +52,7 @@
     };
   };
 
-  services.caddy.virtualHosts."adguard.i.deraedt.dev" = {
+  services.caddy.virtualHosts."adguard.home.deraedt.dev" = {
     extraConfig = ''
       tls internal
       reverse_proxy http://localhost:3000

@@ -3,7 +3,7 @@
 
   networking = {
     hostName = hostname;
-    domain = "i.deraedt.dev";
+    domain = "hpi.home.deraedt.dev";
 
     defaultGateway = "192.168.178.1";
     nameservers = ["94.140.14.14" "94.140.15.15"];
