@@ -8,12 +8,20 @@
     defaultGateway = "192.168.178.1";
     nameservers = ["94.140.14.14" "94.140.15.15"];
 
-    interfaces.end0.ipv4.addresses = [
-      {
-        address = "192.168.178.201";
-        prefixLength = 24;
-      }
-    ];
+    interfaces.end0 = {
+      ipv6.addresses = [
+        {
+          address = "fe80::bad:face:1";
+          prefixLength = 64;
+        }
+      ];
+      ipv4.addresses = [
+        {
+          address = "192.168.178.201";
+          prefixLength = 24;
+        }
+      ];
+    };
 
     firewall = {
       enable = true;
