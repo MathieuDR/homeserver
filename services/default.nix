@@ -30,6 +30,7 @@ in {
   imports = [
     ./adguard.nix
     ./caddy.nix
+    ./netconsole-receiver.nix
   ];
 
   environment.systemPackages = [
